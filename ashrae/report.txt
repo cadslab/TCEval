@@ -1,0 +1,35 @@
+[Deepseek-R1-32B] Original data rows: 8100
+[Deepseek-R1-32B] Matching result rows: 1605
+[Deepseek-R1-32B] Matching result ratio: 0.1981
+[Deepseek-R1-32B] Ratio of absolute differences < 1: 0.3885
+[Deepseek-R1-32B] Black marked rows (special conditions): 2551
+
+[gemma3-27B] Original data rows: 8100
+[gemma3-27B] Matching result rows: 577
+[gemma3-27B] Matching result ratio: 0.0712
+[gemma3-27B] Ratio of absolute differences < 1: 0.5883
+[gemma3-27B] Black marked rows (special conditions): 0
+
+[gpt-oss-120B] Original data rows: 8100
+[gpt-oss-120B] Matching result rows: 2207
+[gpt-oss-120B] Matching result ratio: 0.2725
+[gpt-oss-120B] Ratio of absolute differences < 1: 0.5357
+[gpt-oss-120B] Black marked rows (special conditions): 103
+
+[mistral-small3] Original data rows: 8100
+[mistral-small3] Matching result rows: 1845
+[mistral-small3] Matching result ratio: 0.2278
+[mistral-small3] Ratio of absolute differences < 1: 0.6675
+[mistral-small3] Black marked rows (special conditions): 0
+
+[Qwen3-32B] Original data rows: 8100
+[Qwen3-32B] Matching result rows: 3003
+[Qwen3-32B] Matching result ratio: 0.3707
+[Qwen3-32B] Ratio of absolute differences < 1: 0.6147
+[Qwen3-32B] Black marked rows (special conditions): 1
+
+[Qwen3-80B] Original data rows: 8100
+[Qwen3-80B] Matching result rows: 4087
+[Qwen3-80B] Matching result ratio: 0.5046
+[Qwen3-80B] Ratio of absolute differences < 1: 0.8170
+[Qwen3-80B] Black marked rows (special conditions): 0
