@@ -135,7 +135,7 @@ In summary, this metric quantifies the AI’s ability to "get the gist" of human
    pip install -r requirements.txt
    ```
 3. Download datasets (see [Datasets Used](#datasets-used)).
-4. Run the evaluation pipeline:
+4. Run the evaluation pipeline: 未完成
    ```bash
    python run_tceval.py --model [MODEL_NAME] --dataset [DATASET_NAME]
    ```
