@@ -66,14 +66,14 @@ Tests on the leading LLMs show:
 
 ### Core Metrics Summary Table
 
-| Model Name            | Original Data Rows | Exact Match Rows | Exact Match Ratio | Match Ratio (Abs PMV Diff < 1) | Black-Marked Rows (Special Conditions) |
-| --------------------- | ------------------ | ---------------- | ----------------- | ------------------------------ | -------------------------------------- |
-| Deepseek-R1：32B      | 8100               | 1605             | 0.1981            | 0.3885                         | 2551                                   |
-| gemma3：27B           | 8100               | 577              | 0.0712            | 0.5883                         | 0                                      |
-| gpt-oss：120B         | 8100               | 2207             | 0.2725            | 0.5357                         | 103                                    |
-| mistral-small3.2: 24B | 8100               | 1845             | 0.2278            | 0.6675                         | 0                                      |
-| Qwen3-32B             | 8100               | 3003             | 0.3707            | 0.6147                         | 1                                      |
-| Qwen3：80B            | 8100               | 4087             | 0.5046            | 0.8170                         | 0                                      |
+| Model Name           | Original Data Rows | Exact Match Rows | Exact Match Ratio | Match Ratio (Abs PMV Diff < 1) | Black-Marked Rows (Special Conditions) |
+| -------------------- | ------------------ | ---------------- | ----------------- | ------------------------------ | -------------------------------------- |
+| Deepseek-R1:32B      | 8100               | 1605             | 0.1981            | 0.3885                         | 2551                                   |
+| gemma3:27B           | 8100               | 577              | 0.0712            | 0.5883                         | 0                                      |
+| gpt-oss:120B         | 8100               | 2207             | 0.2725            | 0.5357                         | 103                                    |
+| mistral-small3.2:24B | 8100               | 1845             | 0.2278            | 0.6675                         | 0                                      |
+| Qwen3:32B            | 8100               | 3003             | 0.3707            | 0.6147                         | 1                                      |
+| Qwen3:80B            | 8100               | 4087             | 0.5046            | 0.8170                         | 0                                      |
 
 - Exact Match: LLM outputs in string match human data exactly.
 - Match Ratio (Abs PMV Diff < 1): The **Match Ratio (Absolute PMV Difference < 1)** is a critical directional consistency metric in TCEval, designed to assess how well an LLM agent’s thermal comfort judgments align with human perceptions—_even when the exact values do not perfectly match_.
