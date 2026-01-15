@@ -77,6 +77,7 @@ Tests on the leading LLMs show:
 
 - Exact Match: LLM outputs in string match human data exactly.
 - Match Ratio (Abs PMV Diff < 1): The **Match Ratio (Absolute PMV Difference < 1)** is a critical directional consistency metric in TCEval, designed to assess how well an LLM agent’s thermal comfort judgments align with human perceptions—_even when the exact values do not perfectly match_.
+- Black-Marked Rows: LLM predictions are outside PMV range or none, or refuse to answer.
 
 #### 1. Metric Definition
 
