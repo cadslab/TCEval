@@ -51,7 +51,7 @@ The TCEval framework follows three core steps:
 
 - [ASHRAE Global Database of Thermal Comfort Field Measurements](https://doi.org/10.6078/D1F671)
 - [Chinese Thermal Comfort Dataset](https://doi.org/10.1038/s41597-023-02568-3)
-- Virtual Personality Database (from [Scaling Synthetic Data Creation with 1,000,000,000 Personas](https://doi.org/10.48550/arXiv.2406.20094))
+- Virtual Personality Database (from [Scaling Synthetic Data Creation with 1,000,000,000 Personas](https://doi.org/10.48550/arXiv.2406.20094)) with [pythermalcomfort](https://doi.org/10.1016/j.softx.2020.100578)
 
 ## Experimental Results
 
@@ -79,6 +79,14 @@ Tests on the leading LLMs show:
 - Match Ratio (Abs PMV Diff < 1): The **Match Ratio (Absolute PMV Difference < 1)** is a critical directional consistency metric in TCEval, designed to assess how well an LLM agent’s thermal comfort judgments align with human perceptions—_even when the exact values do not perfectly match_.
 - Black-Marked Rows: LLM predictions are outside PMV range or none, or refuse to answer.
 
+### Chinese Thermal Comfort Dataset
+
+soon
+
+### Virtual Person with pythermalcomfort
+
+soon
+
 #### 1. Metric Definition
 
 This ratio calculates the **proportion of test cases** where the **absolute difference between the AI’s predicted PMV and the human’s actual PMV** is less than 1. Mathematically:  
@@ -89,7 +97,6 @@ This ratio calculates the **proportion of test cases** where the **absolute diff
 #### 2. What It Measures (and Why It Matters)
 
 - **Directional Consistency**: Unlike the "Exact Match Ratio" (which requires AI PMV = Human PMV), this metric focuses on whether the AI’s judgment _trends in the same direction_ as human perception. For example:
-
   - If a human rates a scenario as "Slightly Warm" (PMV = +1) and the AI predicts "Warm" (PMV = +2), the absolute difference is 1 (not included).
   - If the AI predicts "Neutral" (PMV = 0), the absolute difference is 1 (not included).
   - If the AI predicts "Slightly Warm" (PMV = +1) or "Warm" (PMV = +2) is not included, but if it predicts "Neutral" (PMV = 0) with a difference of 1, it’s also not included. Wait, let's correct with valid examples:
