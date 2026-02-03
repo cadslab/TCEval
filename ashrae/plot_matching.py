@@ -1,3 +1,4 @@
+import datetime as dt
 import os
 import sys
 
@@ -74,8 +75,13 @@ class HeatmapPlotter:
                 self.console.flush()
                 self.file.flush()
 
-        # Redirect sys.stdout to the custom DualOutput instance
-        sys.stdout = DualOutput("logs.txt")
+        # Redirect sys.stdout to the custom DualOutput instance with timestamp
+
+        timestamp = dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        log_file_path = os.path.join(
+            self.folder_path, f"./history/logs_{timestamp}.txt"
+        )
+        sys.stdout = DualOutput(log_file_path)
 
     def _restore_stdout(self):
         """Restore original standard output and close the log file"""
@@ -89,9 +95,13 @@ class HeatmapPlotter:
         self._redirect_print_to_log()
 
         # Find all CSV files
+        target_subdir = "assembled"
+        root_dir = os.path.abspath(self.folder_path)
+        search_path = os.path.join(root_dir, target_subdir)
+
         self.csv_files = [
-            os.path.join(self.folder_path, f)
-            for f in os.listdir(self.folder_path)
+            os.path.join(search_path, f)
+            for f in os.listdir(search_path)
             if f.lower().endswith(".csv")
         ]
 
@@ -104,9 +114,6 @@ class HeatmapPlotter:
         self.model_names = [os.path.basename(f).split(".")[0] for f in self.csv_files]
         print(f"Found {len(self.model_names)} models: {self.model_names}")
         self.dataframes = []
-
-        # New: Store content for report.txt (output from lines 95-108)
-        report_content = []
 
         for idx, file in enumerate(self.csv_files):
             df = pd.read_csv(file)
@@ -138,23 +145,23 @@ class HeatmapPlotter:
                 f"[{self.model_names[idx]}] Original data rows: {len(df)}",
                 f"[{self.model_names[idx]}] Matching result rows: {df['string_match'].sum()}",
                 f"[{self.model_names[idx]}] Matching result ratio: {df['string_match'].sum()/len(df):.4f}",
-                f"[{self.model_names[idx]}] Ratio of absolute differences < 1: {df['float_diff_abs'].lt(1).sum()/len(df):.4f}",
-                f"[{self.model_names[idx]}] Black marked rows (special conditions): {df['is_black'].sum()}",
             ]
+
+            thresholds = [0.1, 0.2, 0.3, 0.4, 0.5]
+            for thresh in thresholds:
+                log_lines.append(
+                    f"[{self.model_names[idx]}] Ratio of absolute differences < {thresh}: {df['float_diff_abs'].lt(thresh).sum()/len(df):.4f}"
+                )
+
+            log_lines.append(
+                f"[{self.model_names[idx]}] Black marked rows (special conditions): {df['is_black'].sum()}"
+            )
 
             # 1. Print to console/logs.txt (via redirection)
             for line in log_lines:
                 print(line)
 
-            # 2. Additional write to report_content (to be saved to report.txt later)
-            report_content.extend(log_lines)
-            report_content.append("")  # Empty line to separate different models
-
             self.dataframes.append(df)
-
-        # Save report.txt (write captured content from lines 95-108)
-        with open("report.txt", "w", encoding="utf-8") as f:
-            f.write("\n".join(report_content))
 
         # Calculate global value range (exclude special marked samples to avoid affecting heatmap color scale)
         all_valid_float_diff = pd.concat(
@@ -344,7 +351,7 @@ if __name__ == "__main__":
         "grid_hspace": 0.1,  # Further reduce row spacing
     }
     # Example: Use current directory as CSV path
-    plotter = HeatmapPlotter(folder_path="./assembled", config=custom_config)
+    plotter = HeatmapPlotter(folder_path=".", config=custom_config)
     if plotter.load_data():
         plotter.plot()
     else:
